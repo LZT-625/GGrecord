@@ -1,0 +1,185 @@
+/*【演出記錄｜頁面共同內容區】這段程式碼提供獨立頁面的基本內容寬度、頂部留白與 Footer 設定。*/
+.page-main {
+  min-height: 100vh;
+  padding: 160px 0 100px;
+  background: var(--bg);
+}
+
+/*【演出記錄｜主要內容容器】這段程式碼限制演出記錄內容最大寬度並置中。*/
+.page-shell {
+  width: min(1240px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+/*【演出記錄｜頁面大標題】這段程式碼控制演出記錄頁最上方標題的尺寸與字距。*/
+.page-title {
+  margin: 0;
+  font-size: clamp(48px, 7vw, 92px);
+  letter-spacing: -0.04em;
+}
+
+/*【演出記錄｜頁面說明】這段程式碼設定標題下方說明文字的最大寬度、顏色與字級。*/
+.section-description {
+  max-width: 720px;
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+/*【演出記錄｜演出列表】這段程式碼建立完整演出資料列的垂直排列容器。*/
+.event-list {
+  display: grid;
+  gap: 0;
+  margin-top: 56px;
+}
+
+/*【演出記錄｜單一演出資料列】這段程式碼建立日期、活動資料與右側箭頭的三欄式 Layout。*/
+.event-item {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 260px 1fr 28px;
+  gap: 56px;
+  align-items: center;
+  padding: 22px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+}
+
+/*【演出記錄｜可點擊演出列】這段程式碼讓演出資料列可以被使用者點擊。*/
+.event-item-button {
+  cursor: pointer;
+}
+
+/*【演出記錄｜演出列滑過效果】這段程式碼在滑鼠移入時提供淡色背景提示。*/
+.event-item-button:hover {
+  background: rgba(255,255,255,0.55);
+}
+
+/*【演出記錄｜演出列箭頭互動】這段程式碼讓滑過活動列時右側箭頭向右移動。*/
+.event-item-button:hover .event-arrow {
+  transform: translateX(4px);
+}
+
+/*【演出記錄｜日期區塊】這段程式碼排列日期數字與直式星期。*/
+.event-date-block {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/*【演出記錄｜日期數字】這段程式碼固定日期數字的字元寬度，讓不同日期保持對齊。*/
+.event-date-number {
+  display: inline-block;
+  width: 5.2ch;
+  color: var(--text);
+  font-size: clamp(34px, 4vw, 58px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/*【演出記錄｜星期】這段程式碼將星期直式排列並使用分隔線與日期數字區隔。*/
+.event-date-weekday {
+  min-width: 30px;
+  padding-left: 10px;
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text);
+  font-size: clamp(12px, 1.2vw, 17px);
+  font-weight: 800;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+/*【演出記錄｜演出名稱】這段程式碼控制演出名稱與下方資訊之間的距離。*/
+.event-main h3 {
+  margin: 0 0 4px;
+}
+
+/*【演出記錄｜演出 Meta 資訊】這段程式碼顯示地點、時間等輔助資訊。*/
+.event-meta {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/*【演出記錄｜活動狀態標籤】這段程式碼保留原專案狀態標籤的結構，但目前不公開顯示。*/
+.event-status {
+  display: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/*【演出記錄｜右側箭頭】這段程式碼設定活動列最右側的操作箭頭。*/
+.event-arrow {
+  color: var(--muted);
+  transition: transform 0.2s ease;
+}
+
+/*【演出記錄｜Footer 頁尾】這段程式碼設定頁面最下方頁尾的尺寸、顏色與文字對齊。*/
+.site-footer {
+  width: 100%;
+  padding: 28px 40px 56px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/*【演出記錄｜中等螢幕 RWD】這段程式碼縮小日期欄與活動內容之間的距離。*/
+@media (max-width: 1000px) {
+  .event-item {
+    grid-template-columns: 220px minmax(0, 1fr) 28px;
+    gap: 36px;
+  }
+}
+
+/*【演出記錄｜手機版 RWD】這段程式碼將日期與活動資料改成上下排列，箭頭固定在右側。*/
+@media (max-width: 700px) {
+  .page-main {
+    padding-top: 132px;
+  }
+
+  .page-shell {
+    width: min(1240px, calc(100% - 32px));
+  }
+
+  .event-item {
+    grid-template-columns: 1fr 28px;
+    gap: 16px;
+  }
+
+  .event-date-block {
+    grid-column: 1;
+    width: fit-content;
+    gap: 12px;
+  }
+
+  .event-main {
+    grid-column: 1;
+  }
+
+  .event-arrow {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}
+
+/*【演出記錄｜小手機 RWD】這段程式碼進一步縮小日期數字以避免手機寬度不足。*/
+@media (max-width: 500px) {
+  .event-date-number {
+    font-size: clamp(32px, 14vw, 48px);
+  }
+}
