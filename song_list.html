@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <!--【全站｜HTML 文件基本設定】這段標籤負責設定編碼、響應式視窗與頁面標題。-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>館青的作品｜GGrecord</title>
+  <!--【館青的作品｜CSS 主串接】這段標籤載入 GGrecord 的 CSS 主入口。-->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!--【館青的作品｜Navbar 導覽列】這段標籤是作品頁最上方的網站導覽區域。-->
+  <header class="site-header">
+    <!--【館青的作品｜Navbar 內容】這段標籤控制 Logo、彈性空間與分頁連結的位置。-->
+    <nav class="navbar" aria-label="主要導覽">
+      <!--【館青的作品｜Navbar 左側 Logo】這段標籤提供回到首頁的 Logo 位置。-->
+      <a class="brand" href="index.html" aria-label="回到首頁"><div class="brand-logo"><span class="brand-logo-fallback">GGteens</span></div></a>
+      <!--【館青的作品｜Navbar 中間彈性空間】這段標籤用來分隔 Logo 與右側導覽。-->
+      <div class="nav-spacer" aria-hidden="true"></div>
+      <!--【館青的作品｜Navbar 右側分頁】這段標籤放置網站主要頁面連結。-->
+      <div class="site-nav">
+        <a href="event_review.html">演出紀錄</a>
+        <a href="song_list.html">館青的作品</a>
+        <a href="the_recap.html">年度回顧</a>
+      </div>
+    </nav>
+  </header>
+
+  <!--【館青的作品｜主要內容區】這段標籤是歌曲資料庫的主內容範圍。-->
+  <main class="page-main" id="song_list">
+    <!--【館青的作品｜內容容器】這段標籤控制頁面左右最大寬度與主要內容位置。-->
+    <div class="section-shell page-shell">
+      <!--【館青的作品｜頁面標題】這段標籤顯示作品頁的大標題。-->
+      <h1 class="page-title">館青的作品</h1>
+      <!--【館青的作品｜頁面說明】這段標籤顯示歌曲資料庫用途說明。-->
+      <p class="section-description">歌曲資料庫。以下先整理目前演出歌單中的歌曲，後續可再擴充歌曲資料。</p>
+      <!--【館青的作品｜歌曲資料庫】這段標籤是未來放置歌曲清單的容器。-->
+      <div id="song-database" class="song-database"></div>
+    </div>
+  </main>
+
+  <!--【全站｜Footer 頁尾】這段標籤是網站最下方的共用頁尾區域。-->
+  <footer class="site-footer"><p>GGrecord</p></footer>
+</body>
+</html>
