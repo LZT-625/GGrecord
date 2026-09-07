@@ -1,0 +1,107 @@
+/*【館青的作品｜頁面共同內容區】這段程式碼提供作品頁的基本高度與上下留白。*/
+.page-main {
+  min-height: 100vh;
+  padding: 160px 0 100px;
+  background: var(--bg);
+}
+
+/*【館青的作品｜主要內容容器】這段程式碼限制歌曲資料庫內容最大寬度並置中。*/
+.page-shell {
+  width: min(1240px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+/*【館青的作品｜頁面大標題】這段程式碼控制作品頁最上方大標題的字級與字距。*/
+.page-title {
+  margin: 0;
+  font-size: clamp(48px, 7vw, 92px);
+  letter-spacing: -0.04em;
+}
+
+/*【館青的作品｜頁面說明】這段程式碼設定歌曲資料庫說明文字。*/
+.section-description {
+  max-width: 720px;
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+/*【館青的作品｜歌曲資料庫】這段程式碼控制歌曲資料列與頁面標題之間的距離及垂直排列。*/
+.song-database {
+  display: grid;
+  gap: 12px;
+  margin-top: 56px;
+}
+
+/*【館青的作品｜單首歌曲資料列】這段程式碼建立歌曲名稱與外部連結左右排列的卡片。*/
+.song-database-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 28px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+/*【館青的作品｜歌曲名稱】這段程式碼設定歌曲名稱的響應式字級。*/
+.song-database-item h2 {
+  margin: 0;
+  font-size: clamp(22px, 2.5vw, 32px);
+}
+
+/*【館青的作品｜Spotify／外部連結】這段程式碼沿用網站文字連結的基本視覺。*/
+.section-link {
+  flex: 0 0 auto;
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-bottom: 1px solid currentColor;
+}
+
+/*【館青的作品｜外部連結互動效果】這段程式碼在使用者操作連結時降低透明度。*/
+.section-link:hover,
+.section-link:focus-visible {
+  opacity: 0.65;
+}
+
+/*【館青的作品｜沒有歌曲資料】這段程式碼設定沒有資料時的提示文字。*/
+.section-empty {
+  margin: 0;
+  color: var(--muted);
+}
+
+/*【館青的作品｜Footer 頁尾】這段程式碼設定作品頁最下方頁尾。*/
+.site-footer {
+  width: 100%;
+  padding: 28px 40px 56px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/*【館青的作品｜平板與手機 RWD】這段程式碼縮小內容左右寬度並將歌曲卡片改成上下排列。*/
+@media (max-width: 900px) {
+  .page-shell {
+    width: min(1240px, calc(100% - 48px));
+  }
+}
+
+/*【館青的作品｜手機版 RWD】這段程式碼縮小頂部留白、說明文字並讓歌曲卡片垂直排列。*/
+@media (max-width: 600px) {
+  .page-main {
+    padding-top: 132px;
+  }
+
+  .page-shell {
+    width: min(1240px, calc(100% - 32px));
+  }
+
+  .section-description {
+    font-size: 16px;
+  }
+
+  .song-database-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
