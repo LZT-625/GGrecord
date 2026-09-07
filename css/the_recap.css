@@ -1,0 +1,128 @@
+/*【年度回顧｜頁面共同內容區】這段程式碼提供年度回顧頁的基本高度與上下留白。*/
+.page-main {
+  min-height: 100vh;
+  padding: 160px 0 100px;
+  background: var(--bg);
+}
+
+/*【年度回顧｜主要內容容器】這段程式碼限制年度回顧內容最大寬度並置中。*/
+.page-shell {
+  width: min(1240px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+/*【年度回顧｜頁面大標題】這段程式碼控制年度回顧頁最上方大標題。*/
+.page-title {
+  margin: 0;
+  font-size: clamp(48px, 7vw, 92px);
+  letter-spacing: -0.04em;
+}
+
+/*【年度回顧｜頁面說明】這段程式碼設定年度資料說明文字的最大寬度與顏色。*/
+.section-description {
+  max-width: 720px;
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+/*【年度回顧｜季度統計卡片區】這段程式碼控制四季統計卡片與頁面說明之間的距離及四欄排列。*/
+.recap-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 56px;
+}
+
+/*【年度回顧｜單一季度統計卡】這段程式碼建立單一季度的白色統計卡片。*/
+.recap-card {
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+/*【年度回顧｜季度卡片輔助文字】這段程式碼設定季度名稱與單位文字。*/
+.recap-card span,
+.recap-card small {
+  display: block;
+  color: var(--muted);
+}
+
+/*【年度回顧｜季度演出數字】這段程式碼設定季度演出場數的大型數字。*/
+.recap-card strong {
+  display: block;
+  margin: 14px 0 6px;
+  font-size: 52px;
+  line-height: 1;
+}
+
+/*【年度回顧｜歌曲演出機率區塊】這段程式碼在季度統計下方建立歌曲排行區域與分隔線。*/
+.recap-section {
+  margin-top: 72px;
+  padding-top: 56px;
+  border-top: 1px solid var(--line);
+}
+
+/*【年度回顧｜歌曲演出機率標題】這段程式碼設定歌曲機率區塊的大標題。*/
+.recap-section-title {
+  margin: 0;
+  font-size: clamp(34px, 4.8vw, 60px);
+  letter-spacing: -0.03em;
+}
+
+/*【年度回顧｜歌曲機率說明】這段程式碼控制歌曲演出機率計算方式的說明文字。*/
+.recap-section .section-description {
+  margin-top: 14px;
+}
+
+/*【年度回顧｜歌曲排行列表】這段程式碼預留歌曲演出機率排行資料的排列容器。*/
+.ranking-list {
+  display: grid;
+  gap: 0;
+  margin-top: 28px;
+}
+
+/*【年度回顧｜沒有排行資料】這段程式碼提供無資料時的文字提示。*/
+.section-empty {
+  margin: 0;
+  color: var(--muted);
+}
+
+/*【年度回顧｜Footer 頁尾】這段程式碼設定年度回顧頁最下方頁尾。*/
+.site-footer {
+  width: 100%;
+  padding: 28px 40px 56px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/*【年度回顧｜平板 RWD】這段程式碼在 900px 以下將四季統計改成兩欄。*/
+@media (max-width: 900px) {
+  .page-shell {
+    width: min(1240px, calc(100% - 48px));
+  }
+
+  .recap-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/*【年度回顧｜手機版 RWD】這段程式碼在 600px 以下縮小頁面留白並將四季統計改成單欄。*/
+@media (max-width: 600px) {
+  .page-main {
+    padding-top: 132px;
+  }
+
+  .page-shell {
+    width: min(1240px, calc(100% - 32px));
+  }
+
+  .section-description {
+    font-size: 16px;
+  }
+
+  .recap-grid {
+    grid-template-columns: 1fr;
+  }
+}
