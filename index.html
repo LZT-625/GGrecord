@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <!--【全站｜HTML 文件基本設定】這段標籤負責設定編碼、響應式視窗與頁面標題。-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GGrecord</title>
+
+  <!--【全站｜CSS 主串接】這段標籤載入 GGrecord 的主要 CSS 入口。-->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!--【首頁｜Navbar 導覽列】這段標籤是首頁最上方固定的網站導覽區塊。-->
+  <header class="site-header">
+    <!--【首頁｜Navbar 導覽列內容】這段標籤控制 Logo、彈性空間與右側分頁的位置。-->
+    <nav class="navbar" aria-label="主要導覽">
+      <!--【首頁｜Navbar 左側 Logo】這段標籤是網站名稱／Logo 的位置預留區。-->
+      <a class="brand" href="index.html" aria-label="回到首頁">
+        <div class="brand-logo">
+          <span class="brand-logo-fallback">GGteens</span>
+        </div>
+      </a>
+
+      <!--【首頁｜Navbar 中間彈性空間】這段標籤用來將左側 Logo 與右側導覽分開。-->
+      <div class="nav-spacer" aria-hidden="true"></div>
+
+      <!--【首頁｜Navbar 右側分頁】這段標籤放置網站主要頁面連結。-->
+      <div class="site-nav">
+        <a href="event_review.html">演出紀錄</a>
+        <a href="song_list.html">館青的作品</a>
+        <a href="the_recap.html">年度回顧</a>
+      </div>
+    </nav>
+  </header>
+
+  <!--【首頁｜Hero／Mainpage 主視覺區】這段標籤是首頁第一個完整畫面，包含主視覺與最近大事。-->
+  <main>
+    <!--【首頁｜Hero／Mainpage 外層】這段標籤建立左右兩欄的首頁主視覺配置。-->
+    <section id="mainpage">
+      <!--【首頁｜Hero 主視覺】這段標籤是左側主要背景圖片、主標題與副標題區域。-->
+      <div class="home">
+        <!--【首頁｜Hero 文字內容】這段標籤控制主標題與副標題靠左、靠下的位置。-->
+        <div class="home-copy">
+          <!--【首頁｜Hero 主標題】這段標籤放置首頁最主要的標題文字。-->
+          <h1>跟館青出去走一走</h1>
+          <!--【首頁｜Hero 副標題】這段標籤放置主標題下方的輔助文字。-->
+          <p>今天又要走去哪呢？</p>
+        </div>
+      </div>
+
+      <!--【首頁｜最近大事 News】這段標籤是首頁右側的最新消息區域。-->
+      <aside class="news" aria-labelledby="recent-news-title">
+        <!--【首頁｜最近大事標題】這段標籤顯示最新消息區塊的標題。-->
+        <h2 id="recent-news-title">最近大事</h2>
+        <!--【首頁｜最近大事列表】這段標籤是未來放置新聞／公告項目的容器。-->
+        <div id="news-list" class="news-list"></div>
+      </aside>
+    </section>
+
+    <!--【首頁｜即將到來的演出】這段標籤是 Hero 下方的近期演出活動區塊。-->
+    <section id="latest_event">
+      <!--【首頁｜即將到來的演出內容容器】這段標籤控制區塊最大寬度與垂直內容排列。-->
+      <div class="section-shell latest-event-shell">
+        <!--【首頁｜即將到來的演出標題列】這段標籤放置區塊標題與完整演出紀錄入口。-->
+        <div class="section-heading-row latest-event-heading">
+          <div>
+            <!--【首頁｜即將到來的演出標題】這段標籤顯示近期演出區塊的大標題。-->
+            <h2 class="section-title">即將到來的演出</h2>
+          </div>
+          <!--【首頁｜完整演出紀錄入口】這段標籤提供前往演出紀錄頁面的連結。-->
+          <a class="section-link" href="event_review.html">查看完整演出紀錄 →</a>
+        </div>
+
+        <!--【首頁｜演出活動卡片容器】這段標籤是未來放置即將到來演出卡片的區域。-->
+        <div id="upcoming-events" class="upcoming-events-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <!--【首頁｜演出詳細資料彈出視窗】這段標籤是點擊演出活動後覆蓋頁面的 Modal 區域。-->
+  <div id="event-modal" class="modal" aria-hidden="true">
+    <!--【首頁｜Modal 背景遮罩】這段標籤負責遮住背景並提供點擊關閉功能。-->
+    <div class="modal-backdrop" data-close-modal></div>
+
+    <!--【首頁｜Modal 主要內容面板】這段標籤是彈出視窗真正顯示詳細資料的白色內容區。-->
+    <article class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <!--【首頁｜Modal 關閉按鈕】這段標籤提供使用者關閉詳細資料視窗的操作。-->
+      <button class="modal-close" type="button" aria-label="關閉" data-close-modal>×</button>
+      <!--【首頁｜Modal 標題】這段標籤顯示目前選取的演出名稱。-->
+      <h2 id="modal-title">演出詳細資料</h2>
+      <!--【首頁｜Modal 詳細內容】這段標籤是未來放置日期、類型、城市、地址、歌單與來源等資料的容器。-->
+      <div id="modal-content" class="detail-layout"></div>
+    </article>
+  </div>
+
+  <!--【全站｜Footer 頁尾】這段標籤是網站最下方的共用頁尾區域。-->
+  <footer class="site-footer">
+    <p>GGrecord</p>
+  </footer>
+</body>
+</html>
