@@ -1,0 +1,5 @@
+/*【全站｜CSS 主串接】這段程式碼負責統一載入 GGrecord 所有頁面的 CSS。*/
+@import url("./css/main_page.css");
+@import url("./css/event_review.css");
+@import url("./css/song_list.css");
+@import url("./css/the_recap.css");
