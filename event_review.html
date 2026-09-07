@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <!--【全站｜HTML 文件基本設定】這段標籤負責設定編碼、響應式視窗與頁面標題。-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>演出紀錄｜GGrecord</title>
+  <!--【演出記錄｜CSS 主串接】這段標籤載入 GGrecord 的 CSS 主入口。-->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!--【演出記錄｜Navbar 導覽列】這段標籤是演出記錄頁最上方的網站導覽區域。-->
+  <header class="site-header">
+    <!--【演出記錄｜Navbar 內容】這段標籤控制 Logo、彈性空間與分頁連結的位置。-->
+    <nav class="navbar" aria-label="主要導覽">
+      <!--【演出記錄｜Navbar 左側 Logo】這段標籤提供回到首頁的 Logo 位置。-->
+      <a class="brand" href="index.html" aria-label="回到首頁"><div class="brand-logo"><span class="brand-logo-fallback">GGteens</span></div></a>
+      <!--【演出記錄｜Navbar 中間彈性空間】這段標籤用來分隔 Logo 與右側導覽。-->
+      <div class="nav-spacer" aria-hidden="true"></div>
+      <!--【演出記錄｜Navbar 右側分頁】這段標籤放置網站主要頁面連結。-->
+      <div class="site-nav">
+        <a href="event_review.html">演出紀錄</a>
+        <a href="song_list.html">館青的作品</a>
+        <a href="the_recap.html">年度回顧</a>
+      </div>
+    </nav>
+  </header>
+
+  <!--【演出記錄｜主要內容區】這段標籤是完整演出資料頁面的主內容範圍。-->
+  <main class="page-main" id="event_review">
+    <!--【演出記錄｜內容容器】這段標籤控制頁面左右最大寬度與主要內容位置。-->
+    <div class="section-shell page-shell">
+      <!--【演出記錄｜頁面標題】這段標籤顯示演出記錄頁的大標題。-->
+      <h1 class="page-title">演出紀錄</h1>
+      <!--【演出記錄｜頁面說明】這段標籤顯示頁面用途說明文字。-->
+      <p class="section-description">2026 年已進行與即將進行的演出一覽。點擊任一演出可查看詳細資料。</p>
+      <!--【演出記錄｜演出列表】這段標籤是未來放置所有演出資料列的容器。-->
+      <div id="event-list" class="event-list"></div>
+    </div>
+  </main>
+
+  <!--【演出記錄｜演出詳細資料彈出視窗】這段標籤保留與首頁相同的詳細資料 Modal 結構。-->
+  <div id="event-modal" class="modal" aria-hidden="true">
+    <!--【演出記錄｜Modal 背景遮罩】這段標籤負責覆蓋背景並提供關閉操作。-->
+    <div class="modal-backdrop" data-close-modal></div>
+    <!--【演出記錄｜Modal 主要內容面板】這段標籤是詳細資料的主要顯示區域。-->
+    <article class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <!--【演出記錄｜Modal 關閉按鈕】這段標籤提供關閉詳細資料視窗的操作。-->
+      <button class="modal-close" type="button" aria-label="關閉" data-close-modal>×</button>
+      <!--【演出記錄｜Modal 標題】這段標籤顯示目前選取的演出名稱。-->
+      <h2 id="modal-title">演出詳細資料</h2>
+      <!--【演出記錄｜Modal 詳細內容】這段標籤保留日期、類型、城市、歌單等資料的顯示位置。-->
+      <div id="modal-content" class="detail-layout"></div>
+    </article>
+  </div>
+
+  <!--【全站｜Footer 頁尾】這段標籤是網站最下方的共用頁尾區域。-->
+  <footer class="site-footer"><p>GGrecord</p></footer>
+</body>
+</html>
