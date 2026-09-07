@@ -1,0 +1,851 @@
+/*【全站｜盒模型】這段程式碼統一所有元素的尺寸計算方式，避免 padding 與 border 造成版面尺寸難以預測。*/
+* {
+  box-sizing: border-box;
+}
+
+/*【全站｜共用色彩變數】這段程式碼集中管理背景、文字、線條與區塊的基礎色彩。*/
+:root {
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --text: #202020;
+  --muted: #77736c;
+  --line: #ddd9d0;
+  --accent: #202020;
+  --section-light: #f0eee8;
+  --section-dark: #222222;
+}
+
+/*【全站｜頁面捲動】這段程式碼讓頁內跳轉使用平滑捲動。*/
+html {
+  scroll-behavior: smooth;
+}
+
+/*【全站｜Body 基礎版面】這段程式碼設定整個網站的預設外距、背景、文字顏色、字體與行距。*/
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, "Noto Sans TC", sans-serif;
+  line-height: 1.7;
+}
+
+/*【首頁｜演出詳細資料 Modal 開啟狀態】這段程式碼在彈出視窗開啟時禁止背景頁面捲動。*/
+body.modal-open {
+  overflow: hidden;
+}
+
+/*【全站｜連結基礎樣式】這段程式碼移除連結預設底線並讓連結沿用目前文字顏色。*/
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/*【全站｜按鈕字體】這段程式碼讓按鈕沿用網站的文字字體。*/
+button {
+  font: inherit;
+}
+
+/*【全站｜文字換行】這段程式碼避免長標題與段落超出容器。*/
+h1, h2, h3, h4, p {
+  overflow-wrap: anywhere;
+}
+
+/*【全站｜標題行高】這段程式碼統一各層標題的基本行高。*/
+h1, h2, h3, h4 {
+  line-height: 1.25;
+}
+
+/*【首頁｜Navbar 導覽列外層】這段程式碼將導覽列固定於畫面最上方，並提供深色半透明背景與模糊效果。*/
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 1000;
+  background: rgba(20, 20, 20, 0.94);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(12px);
+}
+
+/*【首頁｜Navbar 導覽列內容】這段程式碼使用三欄 Grid 排列 Logo、彈性空間與右側分頁。*/
+.navbar {
+  width: 100%;
+  height: 80px;
+  padding: 0 32px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 32px;
+  opacity: 1;
+}
+
+/*【首頁｜Navbar Logo 連結】這段程式碼控制左側 Logo 的垂直置中。*/
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+/*【首頁｜Navbar Logo 容器】這段程式碼設定 Logo 的最小寬度與高度。*/
+.brand-logo {
+  min-width: 150px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+/*【首頁｜Navbar Logo 圖片預留】這段程式碼保留原專案圖片 Logo 的 class，但目前不顯示圖片。*/
+.brand-logo-image {
+  display: none;
+}
+
+/*【首頁｜Navbar 文字 Logo】這段程式碼是沒有圖片 Logo 時使用的文字 Logo。*/
+.brand-logo-fallback {
+  display: block;
+  color: #ffffff;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+/*【首頁｜Navbar 右側分頁】這段程式碼控制右側分頁連結的水平排列與間距。*/
+.site-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 36px;
+}
+
+/*【首頁｜Navbar 單一分頁連結】這段程式碼設定導覽文字大小、粗細與不可換行。*/
+.site-nav a {
+  padding: 8px 0;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/*【首頁｜Navbar 滑過／鍵盤焦點】這段程式碼在使用者操作分頁時加入底線提示。*/
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+/*【首頁｜Hero Mainpage 外層】這段程式碼建立首頁第一個完整畫面的左右雙欄 Layout，左側 75%、右側 25%。*/
+#mainpage {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 75% 25%;
+  align-items: stretch;
+  overflow: hidden;
+  position: relative;
+  scroll-margin-top: 80px;
+  background: #d8d3c8;
+}
+
+/*【首頁｜Hero 主視覺】這段程式碼建立左側背景圖片區，圖片以 cover 方式填滿並保留文字可讀性遮罩。*/
+.home {
+  min-width: 0;
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background-image: linear-gradient(rgba(0,0,0,0.14), rgba(0,0,0,0.14)), url("../img/mainpage/Main_BG.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+}
+
+/*【首頁｜Hero 文字容器】這段程式碼控制 Hero 主標題與副標題靠左、靠下的留白。*/
+.home-copy {
+  width: 100%;
+  padding: 0 6vw 8vh;
+}
+
+/*【首頁｜Hero 主標題】這段程式碼控制首頁主標題的最大寬度、字級、粗細與字距。*/
+.home-copy h1 {
+  max-width: 75%;
+  margin: 0 0 12px;
+  font-size: clamp(42px, 5.4vw, 82px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+/*【首頁｜Hero 副標題】這段程式碼控制主標題下方輔助文字的寬度與字級。*/
+.home-copy p {
+  max-width: 35%;
+  margin: 0;
+  font-size: clamp(20px, 1.9vw, 30px);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/*【首頁｜最近大事 News】這段程式碼建立 Hero 右側 25% 的深色消息區。*/
+.news {
+  min-width: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 3vw;
+  background: #202020;
+  color: #ffffff;
+}
+
+/*【首頁｜最近大事標題】這段程式碼設定 News 區塊的主要標題尺寸。*/
+.news h2 {
+  margin: 0 0 16px;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.2;
+}
+
+/*【首頁｜最近大事列表】這段程式碼讓新聞項目垂直排列。*/
+.news-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/*【首頁｜最近大事單一消息】這段程式碼建立每則消息的上下分隔線與內距。*/
+.news-card {
+  padding: 18px 0;
+  border-top: 1px solid rgba(255,255,255,0.28);
+}
+
+/*【首頁｜最近大事標題文字】這段程式碼設定單則消息標題大小。*/
+.news-card h3 {
+  margin: 0 0 6px;
+  font-size: clamp(18px, 1.7vw, 24px);
+  line-height: 1.35;
+}
+
+/*【首頁｜最近大事說明文字】這段程式碼設定單則消息的輔助說明樣式。*/
+.news-card p {
+  margin: 0;
+  color: rgba(255,255,255,0.78);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/*【首頁｜即將到來的演出外層】這段程式碼建立 Hero 下方的完整演出區塊，高度扣除固定 Navbar。*/
+#latest_event {
+  width: 100%;
+  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
+  max-height: calc(100vh - 80px);
+  position: relative;
+  scroll-margin-top: 80px;
+  padding: 10px 7vw;
+  background: var(--section-light);
+  overflow: hidden;
+}
+
+/*【首頁｜一般內容最大寬度】這段程式碼控制首頁演出區塊內容不超過 1240px 並置中。*/
+.section-shell {
+  width: min(1240px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+/*【首頁｜標題列】這段程式碼讓區塊標題與右側連結水平分布並靠底對齊。*/
+.section-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+/*【首頁｜區塊大標題】這段程式碼設定首頁「即將到來的演出」等區塊標題尺寸。*/
+.section-title {
+  margin: 0;
+  font-size: clamp(40px, 5.8vw, 72px);
+  letter-spacing: -0.03em;
+}
+
+/*【首頁｜區塊連結】這段程式碼設定「查看完整演出紀錄」等文字連結。*/
+.section-link {
+  flex: 0 0 auto;
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-bottom: 1px solid currentColor;
+}
+
+/*【首頁｜區塊連結互動效果】這段程式碼降低連結透明度作為滑過／焦點提示。*/
+.section-link:hover,
+.section-link:focus-visible {
+  opacity: 0.65;
+}
+
+/*【首頁｜即將到來的演出內容容器】這段程式碼讓標題與活動卡片共同填滿區塊高度。*/
+.latest-event-shell {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/*【首頁｜即將到來的演出標題列】這段程式碼控制演出區塊標題與卡片之間的距離。*/
+.latest-event-heading {
+  margin-bottom: 10px;
+  padding-top: 0;
+  flex: 0 0 auto;
+}
+
+/*【首頁｜即將到來的演出卡片列表】這段程式碼讓最多三張活動卡垂直排列並填滿剩餘高度。*/
+.upcoming-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/*【首頁｜即將到來的演出活動卡片】這段程式碼建立日期、活動資訊、詳細入口三欄式卡片 Layout。*/
+.upcoming-event-card {
+  width: 100%;
+  min-height: 0;
+  flex: 1 1 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(230px, 24%) minmax(0, 1fr) 90px;
+  align-items: stretch;
+  column-gap: 32px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  overflow: hidden;
+  margin: 0;
+}
+
+/*【首頁｜活動卡片互動效果】這段程式碼讓滑過或鍵盤選取的活動卡片輕微上移並產生陰影。*/
+.upcoming-event-card:hover,
+.upcoming-event-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+}
+
+/*【首頁｜活動卡片日期區】這段程式碼控制日期與星期在左側欄位中的垂直置中。*/
+.upcoming-event-date-block {
+  min-width: 0;
+  padding: 18px 18px 18px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/*【首頁｜活動卡片日期列】這段程式碼讓日期數字與星期橫向排列。*/
+.upcoming-event-date-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+/*【首頁｜活動卡片日期數字】這段程式碼固定日期欄位的字元寬度，讓不同日期保持視覺對齊。*/
+.upcoming-event-date {
+  display: inline-block;
+  width: 5.2ch;
+  color: var(--text);
+  font-size: clamp(30px, 3.2vw, 50px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/*【首頁｜活動卡片星期】這段程式碼將星期以直式方式顯示並加入左側分隔線。*/
+.upcoming-event-weekday {
+  min-width: 30px;
+  padding-left: 10px;
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text);
+  font-size: clamp(12px, 1.15vw, 16px);
+  font-weight: 800;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+/*【首頁｜活動卡片演出時間】這段程式碼設定日期下方的演出時間文字。*/
+.upcoming-event-time {
+  margin-left: 2px;
+  color: var(--text);
+  font-size: clamp(13px, 1.2vw, 17px);
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/*【首頁｜活動卡片主要資訊】這段程式碼控制活動名稱與 Meta 資訊在中央欄位的垂直置中。*/
+.upcoming-event-main {
+  min-width: 0;
+  padding: 18px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/*【首頁｜活動卡片活動名稱】這段程式碼設定活動名稱的字級與行高。*/
+.upcoming-event-card h3 {
+  margin: 0;
+  font-size: clamp(21px, 2.2vw, 35px);
+  line-height: 1.2;
+}
+
+/*【首頁｜活動卡片 Meta 資訊】這段程式碼排列活動類型、票務狀態與簡易地點資訊。*/
+.upcoming-event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 18px;
+  margin-top: 8px;
+  color: var(--text);
+  font-size: clamp(14px, 1.3vw, 18px);
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+/*【首頁｜活動卡片類型】這段程式碼設定活動類型文字不使用背景標籤。*/
+.upcoming-event-type {
+  color: var(--text);
+}
+
+/*【首頁｜活動卡片票務標籤】這段程式碼設定付費／免費狀態的基本標籤外觀。*/
+.upcoming-event-fee {
+  padding: 3px 12px;
+  border-radius: 8px;
+  color: #ffffff;
+}
+
+/*【首頁｜活動卡片付費狀態】這段程式碼設定付費票務標籤的背景色。*/
+.upcoming-event-fee--paid {
+  background: #ad3035;
+}
+
+/*【首頁｜活動卡片免費狀態】這段程式碼設定免費票務標籤的背景色。*/
+.upcoming-event-fee--free {
+  background: #8fc8b0;
+}
+
+/*【首頁｜活動卡片詳細入口】這段程式碼建立右側「詳細資料」操作區域。*/
+.upcoming-event-detail {
+  min-width: 0;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  text-align: center;
+  font-size: clamp(15px, 1.5vw, 21px);
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+/*【首頁｜活動卡片預留區】這段程式碼隱藏原專案中的示意預留區，但保留 class 方便維護。*/
+.upcoming-event-reserved {
+  display: none;
+}
+
+/*【首頁｜活動卡片 GO 狀態】這段程式碼依原專案設定不公開顯示 GO 狀態。*/
+.upcoming-event-status {
+  display: none;
+}
+
+/*【首頁｜演出詳細資料 Modal 外層】這段程式碼建立固定覆蓋全畫面的彈出視窗容器。*/
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+}
+
+/*【首頁｜演出詳細資料 Modal 開啟狀態】這段程式碼讓被開啟的 Modal 顯示在畫面上。*/
+.modal.is-open {
+  display: block;
+}
+
+/*【首頁｜演出詳細資料 Modal 背景遮罩】這段程式碼在詳細資料視窗後方建立深色遮罩。*/
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 20, 20, 0.68);
+}
+
+/*【首頁｜演出詳細資料 Modal 主要面板】這段程式碼設定白色詳細資料面板的寬度、最大高度、內距與陰影。*/
+.modal-panel {
+  position: relative;
+  width: min(920px, calc(100% - 32px));
+  min-height: 0;
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  margin: 16px auto;
+  padding: 44px 48px 48px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+/*【首頁｜演出詳細資料 Modal 標題】這段程式碼限制長標題寬度並設定響應式字級。*/
+.modal-panel h2 {
+  max-width: 25ch;
+  margin: 0 56px 0 0;
+  font-size: clamp(30px, 4.2vw, 48px);
+  line-height: 1.22;
+  overflow-wrap: anywhere;
+}
+
+/*【首頁｜演出詳細資料 Modal 關閉按鈕】這段程式碼建立右上角圓形關閉按鈕。*/
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+/*【首頁｜演出詳細資料 Modal 關閉按鈕互動】這段程式碼在滑過關閉按鈕時改變背景色。*/
+.modal-close:hover {
+  background: var(--bg);
+}
+
+/*【首頁｜演出詳細資料 Modal 內容外層】這段程式碼設定標題與詳細資料之間的垂直距離。*/
+.detail-layout {
+  margin-top: 30px;
+}
+
+/*【首頁｜演出詳細資料摘要】這段程式碼建立日期、類型、城市三欄摘要 Layout。*/
+.detail-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+/*【首頁｜演出詳細資料摘要單欄】這段程式碼設定摘要欄位的內距與右側分隔線。*/
+.detail-summary-item {
+  min-width: 0;
+  padding: 16px 18px;
+  border-right: 1px solid var(--line);
+}
+
+/*【首頁｜演出詳細資料摘要最後欄】這段程式碼移除最後一欄多餘的右側分隔線。*/
+.detail-summary-item:last-child {
+  border-right: 0;
+}
+
+/*【首頁｜演出詳細資料摘要欄位名稱】這段程式碼設定日期、類型、城市等標籤文字。*/
+.detail-summary-item span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/*【首頁｜演出詳細資料摘要內容】這段程式碼設定摘要實際資料的字級與換行方式。*/
+.detail-summary-item strong {
+  display: block;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/*【首頁｜演出詳細資料內容區塊】這段程式碼建立歌單、地址、來源等詳細資訊的上下分隔。*/
+.detail-section {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+/*【首頁｜演出詳細資料歌單區塊】這段程式碼讓歌單區塊比一般詳細資料多一些上方留白。*/
+.detail-section--songs {
+  padding-top: 28px;
+}
+
+/*【首頁｜演出詳細資料來源區塊】這段程式碼讓最後的來源區塊取消底部線條。*/
+.detail-section--source {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+/*【首頁｜演出詳細資料區塊標題】這段程式碼設定各詳細資料小標題。*/
+.detail-section h3 {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/*【首頁｜演出詳細資料一般文字】這段程式碼設定地址、說明等一般內容的行高。*/
+.detail-value {
+  margin: 0 0 10px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+/*【首頁｜演出詳細資料連結】這段程式碼設定地址、來源等可點擊連結的底線樣式。*/
+.detail-link {
+  display: inline-block;
+  margin-top: 2px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/*【首頁｜演出詳細資料空資料提示】這段程式碼設定沒有資料時的提示文字。*/
+.detail-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/*【首頁｜演出詳細資料歌曲列表】這段程式碼建立歌曲項目的垂直列表。*/
+.song-list {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*【首頁｜演出詳細資料單首歌曲】這段程式碼排列歌曲編號與歌曲名稱／連結。*/
+.song-link {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  padding: 7px 0;
+  color: inherit;
+  text-decoration: none;
+  line-height: 1.5;
+}
+
+/*【首頁｜演出詳細資料歌曲編號】這段程式碼讓歌曲編號保持不縮放並使用淡色。*/
+.song-link > span {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+
+/*【首頁｜演出詳細資料 Spotify 歌曲連結】這段程式碼讓可點擊歌曲在滑過時顯示底線。*/
+.song-link:not(.song-link--plain):hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/*【首頁｜中等螢幕 RWD】這段程式碼在 1000px 以下縮小 Hero 左右比例與活動卡片欄位。*/
+@media (max-width: 1000px) {
+  #mainpage {
+    grid-template-columns: 70% 30%;
+  }
+
+  .home-copy {
+    padding-left: 5vw;
+  }
+
+  .home-copy h1 {
+    max-width: 82%;
+  }
+
+  .home-copy p {
+    max-width: 60%;
+  }
+
+  .upcoming-event-card {
+    grid-template-columns: minmax(180px, 26%) minmax(0, 1fr) 78px;
+    column-gap: 24px;
+  }
+
+  .upcoming-event-date-block {
+    padding-left: 20px;
+  }
+}
+
+/*【首頁｜平板與手機 RWD】這段程式碼在 700px 以下將 Hero 與 News 改成上下排列，並讓活動卡片改為上下內容配置。*/
+@media (max-width: 700px) {
+  .navbar {
+    padding: 0 18px;
+    gap: 16px;
+  }
+
+  .brand-logo {
+    min-width: 110px;
+  }
+
+  .brand-logo-fallback {
+    font-size: 24px;
+  }
+
+  .site-nav {
+    gap: 18px;
+  }
+
+  .site-nav a {
+    font-size: 14px;
+  }
+
+  #mainpage {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .home {
+    min-height: 72vh;
+  }
+
+  .news {
+    min-height: auto;
+    padding: 36px 24px;
+  }
+
+  .home-copy {
+    padding: 0 24px 48px;
+  }
+
+  .home-copy h1,
+  .home-copy p {
+    max-width: 100%;
+  }
+
+  #latest_event {
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+    padding: 20px 24px;
+    overflow: visible;
+  }
+
+  .latest-event-shell {
+    height: auto;
+    min-height: calc(100vh - 40px);
+  }
+
+  .upcoming-event-card {
+    flex: 1 1 0;
+    grid-template-columns: 1fr 78px;
+    grid-template-rows: auto auto auto;
+    min-height: 180px;
+    column-gap: 0;
+  }
+
+  .upcoming-event-date-block {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 18px 20px 10px;
+  }
+
+  .upcoming-event-main {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 8px 20px 18px;
+  }
+
+  .upcoming-event-detail {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+    min-height: 46px;
+    border-top: 1px solid var(--line);
+  }
+
+  .section-shell {
+    width: min(1240px, calc(100% - 48px));
+  }
+
+  .section-heading-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .detail-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-summary-item {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .detail-summary-item:last-child {
+    border-bottom: 0;
+  }
+
+  .modal-panel {
+    width: calc(100% - 20px);
+    margin: 10px auto;
+    max-height: calc(100vh - 20px);
+    padding: 32px 22px 36px;
+  }
+
+  .modal-panel h2 {
+    max-width: none;
+    margin-right: 44px;
+    font-size: 30px;
+  }
+}
+
+/*【首頁｜手機版 RWD】這段程式碼在 600px 以下縮小共用內容寬度與一般文字。*/
+@media (max-width: 600px) {
+  .section-shell {
+    width: min(1240px, calc(100% - 32px));
+  }
+
+  .section-title {
+    font-size: 42px;
+  }
+
+  .section-description {
+    font-size: 16px;
+  }
+}
+
+/*【首頁｜小手機 RWD】這段程式碼在 520px 以下進一步縮小 Navbar。*/
+@media (max-width: 520px) {
+  .brand-logo {
+    min-width: 88px;
+  }
+
+  .brand-logo-fallback {
+    font-size: 20px;
+  }
+
+  .site-nav {
+    gap: 12px;
+  }
+
+  .site-nav a {
+    font-size: 12px;
+  }
+}
+
+/*【首頁｜小手機 Hero RWD】這段程式碼在 500px 以下縮小 Hero 標題。*/
+@media (max-width: 500px) {
+  .home-copy h1 {
+    font-size: clamp(34px, 11vw, 48px);
+  }
+
+  .home-copy p {
+    font-size: 18px;
+  }
+
+  .upcoming-event-date {
+    font-size: clamp(28px, 13vw, 44px);
+  }
+}
